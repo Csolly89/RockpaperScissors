@@ -1,27 +1,27 @@
-// alert("Skynet is moments away from going live and taking over the entire internet to begin launching Nukes across the world and bring upon Judgment Day. John Connor has installed a backdoor to prevent Skynet from going live, a game of Rock, Paper & Scissors. Best 2 or 3 wins and if it seems like you may lose, Don't be afraid to break the traditional rules and make sure that Skynet Doesn't Win!!")
+// original code in html/javascript to chose the players selection based off the text of the button itself and running switch board to compare each time a button is clicked
 
-const playerText = document.querySelector("#player1");
-const computerText = document.querySelector("#skynet");
-const resultText = document.querySelector("#outcome");
-const choiceBtns = document.querySelectorAll(".yourChoice");
+// const playerText = document.querySelector("#player1");
+// const computerText = document.querySelector("#skynet");
+// const resultText = document.querySelector("#outcome");
+// const choiceBtns = document.querySelectorAll(".yourChoice");
 
-const compscore = document.querySelector(".compscore");
-const playerscore = document.querySelector(".yourscore");
+// const compscore = document.querySelector(".compscore");
+// const playerscore = document.querySelector(".yourscore");
 
-let player;
-let computer;
-let result;
+// let player;
+// let computer;
+// let result;
 
-choiceBtns.forEach((button) =>
-	button.addEventListener("click", () => {
-		player = button.textContent;
-		computerSlct = computerSelection();
-		playerText.textContent = `Player: ${player}`;
-		computerText.textContent = `Skynet: ${computerSlct}`;
-		resultText.textContent = checkWinner(player, computerSlct);
-		lavaEasterEgg();
-	})
-);
+// choiceBtns.forEach((button) =>
+// 	button.addEventListener("click", () => {
+// 		player = button.textContent;
+// 		computerSlct = computerSelection();
+// 		playerText.textContent = `Player: ${player}`;
+// 		computerText.textContent = `Skynet: ${computerSlct}`;
+// 		resultText.textContent = checkWinner(player, computerSlct);
+// 		lavaEasterEgg();
+// 	})
+// );
 
 // instant win when you click lava button and display's alert and shows endgame button
 document.getElementById("Lava").addEventListener("click", () => {
