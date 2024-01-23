@@ -1,16 +1,35 @@
 export default function Judgement(choice, skynet) {
 	// console.log("this is button", choice, "this is skynet", skynet);
-	const winConditions = {
-		Rock: "Paper",
-		Paper: "Scissors",
-		Scissors: "Rock",
-	};
+	switch (choice) {
+		case "Rock":
+			if (skynet === "Scissors") {
+				return "Mankind";
+			} else if (skynet === "Paper") {
+				return "Skynet";
+			} else {
+				return "DRAW";
+			}
 
-	if (choice === skynet) {
-		return "DRAW";
-	} else if (winConditions[choice] === skynet) {
-		return "Mankind";
-	} else {
-		return "Skynet";
+		case "Paper":
+			if (skynet === "Rock") {
+				return "Mankind";
+			} else if (skynet === "Scissors") {
+				return "Skynet";
+			} else {
+				return "DRAW";
+			}
+
+		case "Scissors":
+			if (skynet === "Paper") {
+				return "Mankind";
+			} else if (skynet === "Rock") {
+				return "Skynet";
+			} else {
+				return "DRAW";
+			}
+
+		case "Lava":
+		default:
+			return "Mankind";
 	}
 }

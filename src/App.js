@@ -15,16 +15,18 @@ function App() {
 	// console.log(choice);
 
 	useEffect(() => {
-		const skynetChoice = Skynet();
-		setSkynet(skynetChoice);
-		console.log(skynet, "skynet");
-		console.log(choice, "choice");
-		const result = `${Judgement(choice, skynetChoice)}`;
-		setWinner(result);
-		console.log(winner);
+		if (choice) {
+			console.log(choice, "choice");
+			const skynetChoice = Skynet();
+			const result = `${Judgement(choice, skynetChoice)}`;
+			console.log(skynetChoice, "skynet");
+			console.log(result);
+			setSkynet(skynetChoice);
+			setWinner(result);
+			setChoice("");
+		}
 	}, [choice]);
 
-	// console.log(winner);
 	return (
 		<div className="App">
 			<header>Come with me if you want to Live</header>
@@ -34,7 +36,7 @@ function App() {
 					<Card.Title>To be determined</Card.Title>
 					<Card.Text>???</Card.Text>
 				</Card.Body>
-				<p>Skynets choice: </p>
+				<p>Skynets choice: {skynet} </p>
 				<Button onClick={(e) => setChoice("Rock")} variant="light">
 					Rock
 				</Button>
