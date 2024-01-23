@@ -1,4 +1,4 @@
-function Skynet() {
+export default function Skynet() {
 	const randNum = Math.floor(Math.random() * 3);
 	if (randNum === 0) {
 		return "Rock";
@@ -8,5 +8,3 @@ function Skynet() {
 		return "Scissors";
 	}
 }
-
-export default Skynet;
