@@ -7,6 +7,7 @@ import Card from "react-bootstrap/Card";
 import Lava from "./Components/Lava";
 import Skynet from "./Components/Skynet";
 import Judgement from "./Components/Judgement";
+import EndGame from "./Components/EndGame";
 
 function App() {
 	const [state, setState] = useState({
@@ -17,25 +18,39 @@ function App() {
 		Victory: []
 	});
 
+	const resetGame = (winner) => {
+		let message = winner === 'Doom' ? "Game Over! Judgement Day has come!" : "We have won the Battle, but the War continues. Skynet has gone back in time for a second chance.";
+		alert(message);
+		setState({
+			choice: "",
+			skynet: "",
+			winner: "",
+			Doom: [],
+			Victory: []
+		});
+	};
+	
+	const resetGameVictor = () => {
+		let message =  "We have won the Battle, but the War continues. Skynet has gone back in time for a second chance.";
+		alert(message);
+		setState({
+			choice: "",
+			skynet: "",
+			winner: "",
+			Doom: [],
+			Victory: []
+		});
+	};
+
 	const handleClick = useCallback((choice) => {
 		let { Doom, Victory, winner } = state;
-
-		if(winner === 'Skynet'){
-			Doom = [...Doom, 1];
-		} else if (winner === 'Mankind') {
-			Victory = [...Victory, 1];
-		}
-
-		// console.log(Doom, "Doom");
-		// console.log(Victory, "Victory");
-
-		setState({
-			...state,
-			choice,
-			Doom,
-			Victory
-		});
-	}, [state]);
+			setState({
+				...state,
+				choice,
+				Doom,
+				Victory
+			});
+		}, [state]);
 
 	useEffect(() => {
 		const { choice } = state;
@@ -45,14 +60,30 @@ function App() {
 			const result = `${Judgement(choice, skynetChoice)}`;
 			console.log(skynetChoice, 'skynet')
 			console.log(result)
-			setState({
-				...state,
-				skynet: skynetChoice,
-				winner: result,
-				choice: ""
-			});
+			let Doom = state.Doom;
+			let Victory = state.Victory;
+			if(result === 'Skynet'){
+				Doom = [...Doom, 1];
+			} else if (result === 'Mankind') {
+				Victory = [...Victory, 1];
+			}
+			if(Doom.length === 3) {
+				resetGame('Doom');
+			} else if(Victory.length === 3) {
+				resetGame('Victory');
+			} else {
+				setState({
+					...state,
+					skynet: skynetChoice,
+					winner: result,
+					choice: "",
+					Doom,
+					Victory
+				});
+			}
 		}
 	}, [state.choice]);
+	
 
 
 	return (
@@ -61,8 +92,8 @@ function App() {
 			<Card id="card" className="text-center">
 				<Card.Header>Rock Paper Scissors</Card.Header>
 				<Card.Body>
-					<Card.Title>To be determined</Card.Title>
-					<Card.Text>???</Card.Text>
+					<Card.Title>Scoring</Card.Title>
+					<Card.Text>Mankind: {state.Victory.length} | {state.Doom.length} :Skynet</Card.Text>
 				</Card.Body>
 				<p>Skynets choice: {state.skynet} </p>
 				<Button onClick={(e) => handleClick("Rock")} variant="light">
@@ -74,12 +105,13 @@ function App() {
 				<Button onClick={(e) => handleClick("Scissors")} variant="light">
 					Scissors
 				</Button>
-				<Lava />
+				{state.Doom.length >= 2 && <Lava resetGameVictor={resetGameVictor} />}
 				<Card.Footer className="text-muted">
 					Timer to start on screen load
 				</Card.Footer>
 				<p>Winner is : {state.winner}</p>
 			</Card>
+			<EndGame Doom={state.Doom} Victory={state.Victory} resetGame={resetGame} />
 		</div>
 	);
 }

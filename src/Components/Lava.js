@@ -1,11 +1,9 @@
 import Button from "react-bootstrap/Button";
 
-//  idea for event.. if winner = skynet ( push to []), if mankind (erase []) if [].length = 2 pop up
-
-function Lava() {
+function Lava({ resetGameVictor}) {
 	return (
 		<div>
-			<Button variant="danger">Lava</Button>
+			<Button onClick={resetGameVictor} variant="danger">Lava</Button>
 		</div>
 	);
 }
