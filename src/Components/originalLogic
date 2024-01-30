@@ -33,60 +33,60 @@ document.getElementById("Lava").addEventListener("click", () => {
 });
 
 // random number generator to put a int value to the 3 options the computer(skynet) has to choose from
-function computerSelection() {
-	const randNum = Math.floor(Math.random() * 3);
-	if (randNum === 0) {
-		return "Rock";
-	} else if (randNum === 1) {
-		return "Paper";
-	} else {
-		return "Scissors";
-	}
-}
+// function computerSelection() {
+// 	const randNum = Math.floor(Math.random() * 3);
+// 	if (randNum === 0) {
+// 		return "Rock";
+// 	} else if (randNum === 1) {
+// 		return "Paper";
+// 	} else {
+// 		return "Scissors";
+// 	}
+// }
 
 // function to check the input from the player(via text on the button they chose) and the value of the computer(via random number generator)
 // to see who will be the victor and increase their score value if they have won
-function checkWinner(player, computerSelection) {
-	switch (player) {
-		case "Rock":
-			if (computerSelection === "Scissors") {
-				increaseScore(playerscore);
-				return "VICTORY!!";
-			} else if (computerSelection === "Paper") {
-				increaseScore(compscore);
-				return "Judgement Day is near!!!";
-			} else {
-				return "DRAW";
-			}
+// function checkWinner(player, computerSelection) {
+// 	switch (player) {
+// 		case "Rock":
+// 			if (computerSelection === "Scissors") {
+// 				increaseScore(playerscore);
+// 				return "VICTORY!!";
+// 			} else if (computerSelection === "Paper") {
+// 				increaseScore(compscore);
+// 				return "Judgement Day is near!!!";
+// 			} else {
+// 				return "DRAW";
+// 			}
 
-		case "Paper":
-			if (computerSelection === "Rock") {
-				increaseScore(playerscore);
-				return "VICTORY!!";
-			} else if (computerSelection === "Scissors") {
-				increaseScore(compscore);
-				return "Judgement Day is near!!!";
-			} else {
-				return "DRAW";
-			}
+// 		case "Paper":
+// 			if (computerSelection === "Rock") {
+// 				increaseScore(playerscore);
+// 				return "VICTORY!!";
+// 			} else if (computerSelection === "Scissors") {
+// 				increaseScore(compscore);
+// 				return "Judgement Day is near!!!";
+// 			} else {
+// 				return "DRAW";
+// 			}
 
-		case "Scissors":
-			if (computerSelection === "Paper") {
-				increaseScore(playerscore);
-				return "VICTORY!!";
-			} else if (computerSelection === "Rock") {
-				increaseScore(compscore);
-				return "Judgement Day is near!!!";
-			} else {
-				return "DRAW";
-			}
+// 		case "Scissors":
+// 			if (computerSelection === "Paper") {
+// 				increaseScore(playerscore);
+// 				return "VICTORY!!";
+// 			} else if (computerSelection === "Rock") {
+// 				increaseScore(compscore);
+// 				return "Judgement Day is near!!!";
+// 			} else {
+// 				return "DRAW";
+// 			}
 
-		case "Lava":
-		default:
-			increaseScore(playerscore);
-			return "Victory!!";
-	}
-}
+// 		case "Lava":
+// 		default:
+// 			increaseScore(playerscore);
+// 			return "Victory!!";
+// 	}
+// }
 
 // function to track and change score from string into an integer and to also track when and if the player loses to trigger an
 // easter egg event to create an Instant win.....cant let skynet win...
