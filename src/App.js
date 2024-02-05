@@ -1,13 +1,16 @@
 // style and hook imports
 import "./App.css";
 import { useState, useEffect, useCallback } from "react";
-import Button from "react-bootstrap/Button";
+
 import Card from "react-bootstrap/Card";
 // local imports
 import Lava from "./Components/Lava";
 import Skynet from "./Components/Skynet";
 import Judgement from "./Components/Judgement";
 import EndGame from "./Components/EndGame";
+import GameButton from "./Components/Button";
+// import Timer from "./Components/Timer";
+import Instructions from "./Components/Instructions";
 
 function App() {
 	const [state, setState] = useState({
@@ -18,6 +21,7 @@ function App() {
 		Victory: []
 	});
 
+	// Endgame function for Winner normally whoever hits 3 (outta 5) 
 	const resetGame = (winner) => {
 		let message = winner === 'Doom' ? "Game Over! Judgement Day has come!" : "We have won the Battle, but the War continues. Skynet has gone back in time for a second chance.";
 		alert(message);
@@ -30,6 +34,7 @@ function App() {
 		});
 	};
 	
+	// Endgame function for the lava easteregg Button
 	const resetGameVictor = () => {
 		let message =  "We have won the Battle, but the War continues. Skynet has gone back in time for a second chance.";
 		alert(message);
@@ -43,7 +48,7 @@ function App() {
 	};
 
 	const handleClick = useCallback((choice) => {
-		let { Doom, Victory, winner } = state;
+		let { Doom, Victory } = state;
 			setState({
 				...state,
 				choice,
@@ -84,30 +89,30 @@ function App() {
 		}
 	}, [state.choice]);
 	
-
+	const selections = ["Rock", "Paper", "Scissors"]
 
 	return (
-		<div className="App">
-			<header>Come with me if you want to Live</header>
-			<Card id="card" className="text-center">
+		<div className="App" >
+			<Instructions />
+			<Card id="card" className="text-center" >
 				<Card.Header>Rock Paper Scissors</Card.Header>
-				<Card.Body>
+				<Card.Body className='cBody' style={{}}>
 					<Card.Title>Scoring</Card.Title>
-					<Card.Text>Mankind: {state.Victory.length} | {state.Doom.length} :Skynet</Card.Text>
-				</Card.Body>
+					<Card.Text >Mankind: {state.Victory.length} | {state.Doom.length} :Skynet</Card.Text>
 				<p>Skynets choice: {state.skynet} </p>
-				<Button onClick={(e) => handleClick("Rock")} variant="light">
-					Rock
-				</Button>
-				<Button onClick={(e) => handleClick("Paper")} variant="light">
-					Paper
-				</Button>
-				<Button onClick={(e) => handleClick("Scissors")} variant="light">
-					Scissors
-				</Button>
-				{state.Doom.length >= 2 && <Lava resetGameVictor={resetGameVictor} />}
-				<Card.Footer className="text-muted">
-					Timer to start on screen load
+				{selections.map((selection) => (<GameButton key={selection} handleClick={handleClick} selection={selection} />
+				))}	
+				{state.Doom.length >= 2 
+				? (
+					<>
+						<h2>Come with me if you want to Live!</h2>
+						<Lava resetGameVictor={resetGameVictor} /> 
+					</>
+				)
+				: null}
+				</Card.Body>
+				<Card.Footer>
+					{/* <Timer resetGame={resetGame}/> */}
 				</Card.Footer>
 				<p>Winner is : {state.winner}</p>
 			</Card>
